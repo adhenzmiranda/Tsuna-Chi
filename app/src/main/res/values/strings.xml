@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Tsuna-Chi</string>
+
+    <string-array name="bloodType1">
+        <item>Type A</item>
+        <item>Type AB</item>
+        <item>Type B</item>
+        <item>Type O</item>
+    </string-array>
+</resources>
