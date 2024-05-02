@@ -14,7 +14,6 @@ import android.widget.TextView
 import android.widget.Toast
 
 
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,12 +55,6 @@ class MainActivity : AppCompatActivity() {
         val articleHeader2 = findViewById<TextView>(R.id.HeaderText2)
         val articleText2 = findViewById<TextView>(R.id.ArticleText2)
 
-//        Rating
-        val compWord = findViewById<TextView>(R.id.compWord)
-        compWord.setVisibility(View.GONE)
-        val compDetails = findViewById<TextView>(R.id.compDetails)
-        compDetails.setVisibility(View.GONE)
-
         //        Positive Traits
         val PosTraitsImagePers = findViewById<ImageView>(R.id.PositiveTraitsImgPers)
         PosTraitsImagePers.setVisibility(View.GONE)
@@ -81,22 +74,13 @@ class MainActivity : AppCompatActivity() {
 
 
         checkCompBtn.setOnClickListener {
-//            Rating
-            val rgPersChecked = rgPersBT.checkedRadioButtonId
-            val rgPartChecked = rgPartBT.checkedRadioButtonId
-
-            compWord.setVisibility(View.VISIBLE)
-            compDetails.setVisibility(View.VISIBLE)
-
             //      Radio Button (Left)
+            val rgPersChecked = rgPersBT.checkedRadioButtonId
             if (rgPersChecked != -1) {
                 val persBT = findViewById<RadioButton>(rgPersChecked)
                 val personalBloodType = persBT.text.toString()
                 val bloodStringPers = "You're\n" + personalBloodType
                 Toast.makeText(this, bloodStringPers, Toast.LENGTH_LONG).show()
-
-                //Rating
-
 
                 when (rgPersBT.indexOfChild(persBT)) {
                     0 -> {
@@ -247,7 +231,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             //      Radio Button (Right)
-
+            val rgPartChecked = rgPartBT.checkedRadioButtonId
             if (rgPartChecked != -1) {
                 val persBT = findViewById<RadioButton>(rgPersChecked)
                 val partBT = findViewById<RadioButton>(rgPartChecked)
@@ -257,7 +241,6 @@ class MainActivity : AppCompatActivity() {
 
                 val persIndex = rgPersBT.indexOfChild(persBT)
                 val partIndex = rgPartBT.indexOfChild(partBT)
-
 
                 if (persIndex != -1 && persIndex == partIndex) {
                     // Display only the personal blood type content
@@ -309,11 +292,6 @@ class MainActivity : AppCompatActivity() {
                             NegTraitsString.text = NegTraitsPers
                             NegTraitsStringPart.text = NegTraitsPart
                             NegTraitsImagePart.setVisibility(View.GONE)
-
-                            val ratingStringDesc = "These two sensitive and intense personalities are highly compatible. They can empathize with each other's emotional depths and understand the need for rich, meaningful connections. However, their shared intensities could lead to conflicts if they don't make efforts to balance each other out. Overall, the mutual understanding forms a strong foundation."
-                            compDetails.text = ratingStringDesc
-                            val ratingNumText = "Empathetic"
-                            compWord.text = ratingNumText
                         }
                         1 -> {
                             // Type AB
@@ -362,12 +340,6 @@ class MainActivity : AppCompatActivity() {
                             NegTraitsString.text = NegTraitsPers
                             NegTraitsStringPart.text = NegTraitsPart
                             NegTraitsImagePart.setVisibility(View.GONE)
-
-//                            Rating
-                            val ratingNumText = "Intense"
-                            compWord.text = ratingNumText
-                            val ratingStringDesc = "As an uncommon pairing of two complex, multifaceted personalities, the AB-AB couple has an amazing opportunity for profound understanding, passion, and connection. Their capacity to explore emotional and rational depths while also needing independence is a unique shared experience. However, this intensity can become volatile if they don't create avenues to balance their myriad needs. With wisdom, theirs can be an unparalleled bond."
-                            compDetails.text = ratingStringDesc
                         }
                         2 -> {
                             // Type B
@@ -416,11 +388,6 @@ class MainActivity : AppCompatActivity() {
                             NegTraitsString.text = NegTraitsPers
                             NegTraitsStringPart.text = NegTraitsPart
                             NegTraitsImagePart.setVisibility(View.GONE)
-//                            Rating
-                            val ratingNumText = "Temperamental"
-                            val ratingStringDesc = "This pairing runs the risk of being either the most harmonious or most disastrous combination. When the two B's spontaneous natures, relaxed paces, and need for freedom are aligned, they seamlessly enable each other's desires in a free-flowing dynamic. But if their preferences clash in key areas like social needs or ambitions, their stubborn commitment to their own wayward paths can lead to conflict."
-                            compWord.text = ratingNumText
-                            compDetails.text = ratingStringDesc
                         }
                         3 -> {
                             // Type O
@@ -471,16 +438,9 @@ class MainActivity : AppCompatActivity() {
                             NegTraitsString.text = NegTraitsPers
                             NegTraitsStringPart.text = NegTraitsPart
                             NegTraitsImagePart.setVisibility(View.GONE)
-//                            Rating
-                            val ratingNumText = "Competitive"
-                            val ratingStringDesc = "These two grounded, honest individuals can build a remarkably frank and direct relationship. However, their capacity for competitive streaks - whether overt or passive - could lead to power struggles that undermine harmony. If they prioritize teamwork over oneupsmanship, their straightforward natures allow solid compatibility."
-                            compWord.text = ratingNumText
-                            compDetails.text = ratingStringDesc
-
                         }
                     }
                 } else {
-
                     when (rgPartBT.indexOfChild(partBT)) {
                         0 -> {
 //                        Type A
@@ -519,30 +479,6 @@ class MainActivity : AppCompatActivity() {
                                     "Difficulty expressing emotions"
                             NegTraitsString.text = NegTraitsPart
                             NegTraitsImagePart.setVisibility(View.VISIBLE)
-//                            Possible Pairs
-                            when (rgPersBT.indexOfChild(persBT)) {
-//                                A x AB
-                                1 -> {
-                                    val ratingNumText = "Conditional"
-                                    val ratingStringDesc = "Compatibility hinges on where the AB falls on the spectrums of emotion/rationality and guardedness/openness. An AB leaning more towards the A side will have an easier connection of mutual depth. But an overly rational, reserved AB may struggle to align with the A's sensitivities, diminishing compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-//                              A x B
-                                2 -> {
-                                    val ratingNumText = "Envious"
-                                    val ratingStringDesc = "There are intrinsic challenges with this pair. The A envies the B's ability to live spontaneously and go at their own relaxed pace, viewing the B's laissez-faire attitude as something desirable yet frustrating. Conversely, the B can feel smothered by the A's eagerness to nurture and emotionally invest. Frequent clashes over priorities reduce compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-//                                A x O
-                                3 -> {
-                                    val ratingNumText = "Contrasting"
-                                    val ratingStringDesc = "The contrast between the sensitive A and the more emotionally stable O creates a dynamic pairing. The O provides grounding for the A's turbulence, while the A helps the O access deeper emotions. Conflicts may arise from the A feeling misunderstood and the O feeling overwhelmed. Making compromises to honor their different needs is key for moderate compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-                            }
 
                         }
                         1 -> {
@@ -582,30 +518,6 @@ class MainActivity : AppCompatActivity() {
                                     "Unconfrontational"
                             NegTraitsString.text = NegTraitsPart
                             NegTraitsImagePart.setVisibility(View.VISIBLE)
-//                            Possible Pairs
-                            when (rgPersBT.indexOfChild(persBT)) {
-//                                AB x A
-                                0 -> {
-                                    val ratingNumText = "Conditional"
-                                    val ratingStringDesc = "Compatibility hinges on where the AB falls on the spectrums of emotion/rationality and guardedness/openness. An AB leaning more towards the A side will have an easier connection of mutual depth. But an overly rational, reserved AB may struggle to align with the A's sensitivities, diminishing compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-//                              AB x B
-                                2 -> {
-                                    val ratingNumText = "Envious"
-                                    val ratingStringDesc = "There are intrinsic challenges with this pair. The A envies the B's ability to live spontaneously and go at their own relaxed pace, viewing the B's laissez-faire attitude as something desirable yet frustrating. Conversely, the B can feel smothered by the A's eagerness to nurture and emotionally invest. Frequent clashes over priorities reduce compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-//                                AB x O
-                                3 -> {
-                                    val ratingNumText = "Contrasting"
-                                    val ratingStringDesc = "The contrast between the sensitive A and the more emotionally stable O creates a dynamic pairing. The O provides grounding for the A's turbulence, while the A helps the O access deeper emotions. Conflicts may arise from the A feeling misunderstood and the O feeling overwhelmed. Making compromises to honor their different needs is key for moderate compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-                            }
 
                         }
                         2 -> {
@@ -647,30 +559,6 @@ class MainActivity : AppCompatActivity() {
                                     "Flaky"
                             NegTraitsString.text = NegTraitsPart
                             NegTraitsImagePart.setVisibility(View.VISIBLE)
-
-                            when (rgPersBT.indexOfChild(persBT)) {
-//                                B x A
-                                0 -> {
-                                    val ratingNumText = "Envious"
-                                    val ratingStringDesc = "There are intrinsic challenges with this pair. The A envies the B's ability to live spontaneously and go at their own relaxed pace, viewing the B's laissez-faire attitude as something desirable yet frustrating. Conversely, the B can feel smothered by the A's eagerness to nurture and emotionally invest. Frequent clashes over priorities reduce compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-//                              B x AB
-                                1 -> {
-                                    val ratingNumText = "Respectful"
-                                    val ratingStringDesc = "These two types share an innate respect for privacy, personal space, and an unhurried approach to life. The AB provides insightful depth that the B appreciates, while the B models the spontaneity and resists overcomplicating that the AB needs. As long as they don't veer into codependent territory, this mutual understanding of each other's need for autonomy breeds excellent compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-//                                B x O
-                                3 -> {
-                                    val ratingNumText = "Complementary"
-                                    val ratingStringDesc = "The patient, loyal nature of the O acts as an excellent complement to the B's more adventurous free spirit. The O provides a steady, supportive base that gives the B the security to explore with spontaneity. As long as the B doesn't feel too reined in and the O doesn't feel held back, this pairing allows both to shine in "
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-                            }
                         }
                         3 -> {
                             // Type O
@@ -710,40 +598,12 @@ class MainActivity : AppCompatActivity() {
                                     "Dominating"
                             NegTraitsString.text = NegTraitsPart
                             NegTraitsImagePart.setVisibility(View.VISIBLE)
-
-                            when (rgPersBT.indexOfChild(persBT)) {
-//                                O x A
-                                0 -> {
-                                    val ratingNumText = "Contrasting"
-                                    val ratingStringDesc = "The contrast between the sensitive A and the more emotionally stable O creates a dynamic pairing. The O provides grounding for the A's turbulence, while the A helps the O access deeper emotions. Conflicts may arise from the A feeling misunderstood and the O feeling overwhelmed. Making compromises to honor their different needs is key for moderate compatibility."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-//                              O x AB
-                                1 -> {
-                                    val ratingNumText = "Perplexing"
-                                    val ratingStringDesc = "Initially, the forthright O may find the AB's complex emotional/rational duality and periodic need for privacy perplexing or even off-putting. However, the resilient O also has the levelheadedness to eventually understand and accommodate the AB's multifaceted nature, especially when the AB faces adversity. With mutual effort, solid compatibility can emerge."
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-//                                O x B
-                                2 -> {
-                                    val ratingNumText = "Complementary"
-                                    val ratingStringDesc = "The patient, loyal nature of the O acts as an excellent complement to the B's more adventurous free spirit. The O provides a steady, supportive base that gives the B the security to explore with spontaneity. As long as the B doesn't feel too reined in and the O doesn't feel held back, this pairing allows both to shine in "
-                                    compWord.text = ratingNumText
-                                    compDetails.text = ratingStringDesc
-                                }
-                            }
-
                         }
                     }
                 }
-
             } else {
                 Toast.makeText(this, "Please select PARTNER's blood type", Toast.LENGTH_LONG).show()
             }
-
-
         }
 
     }
